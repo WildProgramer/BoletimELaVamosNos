@@ -1,10 +1,11 @@
-package boletimescolar.info.boletimelavamosnos;
+package boletimescolar.info.boletimelavamosnos.view.activities;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import boletimescolar.info.boletimelavamosnos.R;
 import boletimescolar.info.boletimelavamosnos.view.fragments.ViewPagerAdapter;
 import boletimescolar.info.boletimelavamosnos.view.tabs.SlidingTabLayout;
 
