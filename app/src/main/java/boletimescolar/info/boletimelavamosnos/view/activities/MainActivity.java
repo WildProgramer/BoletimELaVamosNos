@@ -1,6 +1,8 @@
 package boletimescolar.info.boletimelavamosnos.view.activities;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private SlidingTabLayout tabs;
     private CharSequence Titles[]={"Notas","Agenda"};
     private int Numboftabs =2;
+
 
 
     @BindView(R.id.nome_txt_toolbar)
@@ -67,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
         tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.colorPrimary);
+                return ContextCompat.getColor(MainActivity.this, R.color.colorPrimary);
+//             
             }
         });
 
