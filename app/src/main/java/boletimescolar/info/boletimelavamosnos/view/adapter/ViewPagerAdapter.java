@@ -1,4 +1,4 @@
-package boletimescolar.info.boletimelavamosnos.view.fragments;
+package boletimescolar.info.boletimelavamosnos.view.adapter;
 
 /**
  * Created by sg-0036936 on 06/09/2016.
@@ -6,6 +6,9 @@ package boletimescolar.info.boletimelavamosnos.view.fragments;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import boletimescolar.info.boletimelavamosnos.view.fragments.Tab1;
+import boletimescolar.info.boletimelavamosnos.view.fragments.Tab2;
 
 /**
  * Created by hp1 on 21-01-2015.
