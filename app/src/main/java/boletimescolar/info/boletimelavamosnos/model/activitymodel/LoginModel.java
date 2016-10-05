@@ -3,7 +3,6 @@ package boletimescolar.info.boletimelavamosnos.model.activitymodel;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -12,16 +11,15 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
-
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import boletimescolar.info.boletimelavamosnos.R;
-import boletimescolar.info.boletimelavamosnos.controler.networking.LoginVolleyThread;
-
+import boletimescolar.info.boletimelavamosnos.controler.volleythread.LoginVolleyThread;
 import boletimescolar.info.boletimelavamosnos.model.domain.AlunoDomain;
+import boletimescolar.info.boletimelavamosnos.model.ips.Ip;
 import boletimescolar.info.boletimelavamosnos.model.sharedpreferences.AlunoShared;
 import boletimescolar.info.boletimelavamosnos.singleton.VolleySingleton;
 import boletimescolar.info.boletimelavamosnos.view.activities.MainActivity;
@@ -55,7 +53,7 @@ public class LoginModel {
         params.put("ra", raAluno);
 
 
-        LoginVolleyThread loginVolleyThread = new LoginVolleyThread(alunoDomain, Request.Method.POST, "http://192.168.0.12//escola/busca.php", params, new Response.Listener<JSONObject>() {
+        LoginVolleyThread loginVolleyThread = new LoginVolleyThread(alunoDomain, Request.Method.POST, Ip.ip, params, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
@@ -79,6 +77,10 @@ public class LoginModel {
                     switch (response.statusCode) {
                         case 404:
                             Toast.makeText(ctx, R.string.user_not_found, Toast.LENGTH_SHORT).show();
+                            break;
+
+                        case 403:
+                            Toast.makeText(ctx, R.string.forbidden, Toast.LENGTH_SHORT).show();
                             break;
 
                     }

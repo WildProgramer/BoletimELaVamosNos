@@ -56,6 +56,21 @@ public class AlunoShared {
 
 
 
+
+
+    }
+
+    //Pega o id do usuário
+
+    public static long getIdUser(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("alunoInfo", Context.MODE_PRIVATE);
+        long id = sharedPreferences.getLong("id_aluno", 0);
+
+
+        return id;
+
+
+
     }
 
 

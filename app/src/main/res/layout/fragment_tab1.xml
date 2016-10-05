@@ -2,15 +2,76 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="You Are In Tab 1"
-        android:id="@+id/textView"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:text="Matérias"
+        android:id="@+id/materia"
+        android:layout_marginStart="35dp"
+        android:layout_below="@+id/tabs"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Notas"
+        android:id="@+id/nota"
+        android:layout_above="@+id/recycler_view"
+        android:layout_toEndOf="@+id/materia"
+        android:layout_marginStart="50dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Faltas"
+        android:id="@+id/falta"
+        android:layout_marginStart="48dp"
+        android:layout_alignTop="@+id/nota"
+        android:layout_toEndOf="@+id/nota" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recycler_view"
+        android:scrollbars="vertical"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/materia"
+        android:layout_alignStart="@+id/materia" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="O que eu preciso recuperar:"
+        android:id="@+id/precisaTirar"
+        android:layout_below="@+id/recycler_view"
+        android:layout_alignStart="@+id/recycler_view"
+        android:layout_marginTop="15dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recycler_view2"
+        android:scrollbars="vertical"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/precisaTirar"
+        android:layout_alignStart="@+id/precisaTirar" />
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="NOTAS ANTERIORES"
+        android:id="@+id/pesquisar"
+        android:layout_below="@+id/recycler_view2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/white"
+        />
+
 
 </RelativeLayout>

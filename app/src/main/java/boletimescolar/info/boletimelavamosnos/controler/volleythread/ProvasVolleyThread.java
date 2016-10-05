@@ -1,4 +1,4 @@
-package boletimescolar.info.boletimelavamosnos.controler.networking;
+package boletimescolar.info.boletimelavamosnos.controler.volleythread;
 
 import android.util.Log;
 
@@ -13,26 +13,33 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Map;
 
-import boletimescolar.info.boletimelavamosnos.model.domain.AlunoDomain;
+import boletimescolar.info.boletimelavamosnos.model.domain.ProvaDomain;
+import boletimescolar.info.boletimelavamosnos.view.adapters.RecyclerViewAdapter;
+
 
 /**
- * Created by Norb7492 on 07/09/2016.
+ * Created by Norb7492 on 13/09/2016.
  */
-public class LoginVolleyThread extends Request<JSONObject> {
-
+public class ProvasVolleyThread extends Request<JSONObject> {
 
     private Response.Listener<JSONObject> response;
     private Map<String, String > params;
-    private AlunoDomain alunoDomain;
+    private ProvaDomain provaDomain;
+    private RecyclerViewAdapter recyclerViewAdapter;
+    private List<ProvaDomain> provaArray;
 
 
-    public LoginVolleyThread(AlunoDomain alunoDomain, int method, String url, Map<String, String> params, Response.Listener<JSONObject> response, Response.ErrorListener listener) {
+
+    public ProvasVolleyThread(List<ProvaDomain> provaArray, RecyclerViewAdapter recyclerViewAdapter,ProvaDomain provaDomain, int method, String url, Map<String, String> params, Response.Listener<JSONObject> response, Response.ErrorListener listener) {
         super(method, url, listener);
         this.params = params;
         this.response = response;
-        this.alunoDomain = alunoDomain;
+        this.provaDomain = provaDomain;
+        this.recyclerViewAdapter = recyclerViewAdapter;
+        this.provaArray = provaArray;
         Log.d("TesteLog", "Chamado");
     }
 
@@ -47,25 +54,39 @@ public class LoginVolleyThread extends Request<JSONObject> {
         try {
 
 
+            provaArray.clear();
 
             Log.d("TesteLog", "Chamado");
             String js = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
 
             JSONObject jsonObject = new JSONObject(js);
-            JSONArray loginArray = jsonObject.getJSONArray("aluno");
+            JSONArray loginArray = jsonObject.getJSONArray("provas");
 
             for (int i = 0; i < loginArray.length(); i++) {
                 JSONObject array = loginArray.getJSONObject(i);
 
+                    ProvaDomain provaDomain2 = new ProvaDomain();
 
 
 
-                alunoDomain.setId_aluno(Long.valueOf(array.getString("id_aluno")));
-                alunoDomain.setP_nome(array.getString("p_nome"));
-                alunoDomain.setS_nome(array.getString("s_nome"));
+                    provaDomain2.setId_prova(Long.valueOf(array.getString("ID_PROVA")));
+                    provaDomain2.setTipo(Integer.valueOf(array.getString("TIPO")));
+                    provaDomain2.setNota(Double.valueOf(array.getString("NOTA")));
+                    provaDomain2.setMateria(Integer.valueOf(array.getString("MATERIA")));
+                    provaDomain2.setFaltas(Integer.valueOf(array.getString("FALTAS")));
 
 
-                Log.d("TestLog", alunoDomain.getP_nome());
+
+                    provaArray.add(provaDomain2);
+
+
+
+
+
+
+                Log.d("MyLog", String.valueOf(provaArray.get(i)));
+
+
 
             }
             return(Response.success(new JSONObject(js),HttpHeaderParser.parseCacheHeaders(response)));
@@ -86,3 +107,8 @@ public class LoginVolleyThread extends Request<JSONObject> {
         this.response.onResponse(response);
     }
 }
+
+
+
+
+

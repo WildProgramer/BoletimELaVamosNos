@@ -7,6 +7,10 @@
 
     <string name="user_not_found">Nenhum aluno cadastrado com este RA</string>
     <string name="fields">Por favor preencher os campos</string>
+    <string name="portugues">Português</string>
+    <string name="matematica">Matemática</string>
+    <string name="ingles">Inglês</string>
+    <string name="forbidden">Acesso negado do servidor</string>
 
 
 </resources>
